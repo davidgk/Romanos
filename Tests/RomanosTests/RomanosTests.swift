@@ -2,8 +2,9 @@
     @testable import Romanos
     
     final class RomanosTests: XCTestCase {
-        private var results:Array = ["1: I"]
+        private var results:Array<String> = []
         override func setUp() {
+            results.append("1: I")
             results.append(results[0] + ", 2: II")
             results.append(results[1] + ", 3: III")
             results.append(results[2] + ", 4: IV")
@@ -17,6 +18,10 @@
             results.append(results[10] + ", 12: XII")
             results.append(results[11] + ", 13: XIII")
             results.append(results[12] + ", 14: XIV")
+            results.append(results[13] + ", 15: XV")
+            results.append(results[14] + ", 16: XVI")
+            results.append(results[15] + ", 17: XVII")
+            results.append(results[16] + ", 18: XVIII")
         }
         
         fileprivate func evaluatefor(value: Int) {
@@ -65,17 +70,13 @@
         func test10() {
             let value = 10; evaluatefor(value: value)
         }
-        func test11() {
-            let value = 11; evaluatefor(value: value)
-        }
-        func test12() {
-            let value = 12; evaluatefor(value: value)
-        }
-        func test13() {
-            let value = 13; evaluatefor(value: value)
-        }
-        func test14() {
-            let value = 14; evaluatefor(value: value)
-        }
+        func test11() { let value = 11; evaluatefor(value: value) }
+        func test12() { let value = 12; evaluatefor(value: value) }
+        func test13() { let value = 13; evaluatefor(value: value) }
+        func test14() { let value = 14; evaluatefor(value: value) }
+        func test15() { let value = 15; evaluatefor(value: value) }
+        func test16() { let value = 16; evaluatefor(value: value) }
+        func test17() { let value = 17; evaluatefor(value: value) }
+        func test18() { let value = 18; evaluatefor(value: value) }
         
     }
