@@ -4,9 +4,9 @@ public class Romanos {
         self.initialValue = initialValue
     }
     
-    fileprivate func evaluateZeroPlusThree( _ value: Int, _ starter: Int, _ sign: String, _ result: inout String) {
-        if value >= starter && value < (starter + 4)  {
-            let addOneTimes = value - starter
+    fileprivate func evaluateZeroPlusThree( _ value: Int, _ result: inout String, _ initial: Int, _ sign: String) {
+        if value >= initial && value < (initial + 4)  {
+            let addOneTimes = value - initial
             result = result +  "\(value): \(sign)" + String(repeating: "I", count: addOneTimes)
         }
     }
@@ -14,6 +14,21 @@ public class Romanos {
     fileprivate func evaluatePreviousFiveMultiple(_ value: Int, _ result: inout String, _ checkValue:Int, _ sign: String, _ sufix: String) {
         if value == checkValue {
             result = result + "\(value): \(sufix)I\(sign)"
+        }
+    }
+    
+    fileprivate func completeValues(_ value: Int, _ result: inout String, _ initial: Int , _ sign: String, _ sufix: String = "") {
+        if value == (initial - 1) {
+            result = result + "\(value): \(sufix)I\(sign)"
+        }
+        if value >= initial && value < (initial + 4)  {
+            let addOneTimes = value - initial
+            if(value < initial) {
+                result = result +  "\(value): \(sign)" + String(repeating: "I", count: addOneTimes)
+            } else {
+                result = result +  "\(value): \(sufix)\(sign)" + String(repeating: "I", count: addOneTimes)
+            }
+            
         }
     }
     
@@ -25,13 +40,9 @@ public class Romanos {
             if value < 4  {
                 result = result +  "\(value): " + String(repeating: "I", count: value)
             }
-            evaluatePreviousFiveMultiple(value, &result, 4, "V", "")
-            evaluateZeroPlusThree( value, 5, "V", &result)
-            evaluatePreviousFiveMultiple(value, &result, 9, "X", "")
-            evaluateZeroPlusThree( value, 10, "X", &result)
-            evaluatePreviousFiveMultiple(value, &result, 14, "V", "X")
-            evaluateZeroPlusThree( value, 15, "XV", &result)
-            
+            completeValues(value, &result, 5, "V")
+            completeValues(value, &result, 10, "X")
+            completeValues(value, &result, 15, "V", "X")
             if value < self.initialValue {
                 let comma: String = ((self.initialValue > 1 && value < self.initialValue ) ? ", " : "")
                 result = result + comma
